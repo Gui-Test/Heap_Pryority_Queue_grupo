@@ -65,24 +65,25 @@ void aumentaChave(Heap *heap, int index, int newValue)
 }
 
 // Função que insere um valor novo no heap
-void insereHeap(Heap *heap, info value)
+int insereHeap(Heap *heap, info value)
 {
     if (heap->size == heap->capacity)
     {
         printf("Heap overflow\n");
-        return;
+        return FRACASSO;
     }
 
     heap->size++;
     int i = heap->size - 1;
     heap->array[i] = value;
 
-    // Fix the heap property if it is violated
+    // Conserta propriedade Heap se violada
     while (i != 0 && heap->array[(i - 1) / 2].matricula < heap->array[i].matricula)
     {
      troca(&heap->array[i], &heap->array[(i - 1) / 2]);
         i = (i - 1) / 2;
     }
+    return SUCESSO;
 }
 
 // Função que deleta uma chave
@@ -113,7 +114,7 @@ void printHeap(Heap *heap)
     printf("\n");
 }
 
-// Function to extract the root (maximum element)
+// Função que extrai a raiz(elemento máximo)
 int extraiMax(Heap *heap)
 {
     if (heap->size <= 0)

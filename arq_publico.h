@@ -1,6 +1,10 @@
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
+#define SIM 1
+#define NAO 0
+#define SUCESSO 1
+#define FRACASSO 0
 
 typedef int tipoChave;
 
@@ -23,7 +27,7 @@ Heap *criaHeap(int capacity);
 void troca(info *a, info *b);
 void heapfica(Heap *heap, int i);
 void aumentaChave(Heap *heap, int index, int newValue);
-void insereHeap(Heap *heap, info value);
+int insereHeap(Heap *heap, info value);
 void deletaChave(Heap *heap, int index);
 void printHeap(Heap *heap);
 int extraiMax(Heap *heap);
