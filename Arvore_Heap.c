@@ -39,6 +39,17 @@ void heapfica(Heap *heap, int i)
     }
 }
 
+void heapSort(Heap *heap){
+    Heap heapAux = *heap;
+    Heap *h;
+    info aux;
+
+    aux.matricula = removeItem(h);
+    printf("%i ",aux.matricula);
+    heapSort(h);
+
+}
+
 // Função que heapfica um array já existente
 void buildHeap(Heap *heap)
 {
@@ -114,8 +125,8 @@ void printHeap(Heap *heap)
     printf("\n");
 }
 
-// Função que extrai a raiz(elemento máximo)
-int extraiMax(Heap *heap)
+// Função que extrai a raiz(elemento máximo/ Primeiro da Fila)
+int removeItem(Heap *heap)
 {
     if (heap->size <= 0)
         return INT_MIN;
@@ -133,4 +144,35 @@ int extraiMax(Heap *heap)
     return root;
 }
 
+void reiniciaHeap(Heap *heap)
+{
+    heap->size = 0;
+}
+
+void printOrdem(Heap *heap){
+    info aux;
+    if(heap->size != 0){
+        aux.matricula = removeItem(heap);
+        printf("%i ",aux.matricula);
+        printOrdem(heap);
+    }
+}
+
+void heapSort(Heap *heap){
+    info aux;
+    Heap *heapAux = (Heap *)malloc(sizeof(Heap));
+    heapAux->size = heap->size;
+    heapAux->capacity = heap->capacity;
+    heapAux->array = (info *)malloc(heap->capacity * sizeof(info));
+    
+    if(heap->size != 0) {    
+        for (int i = 0; i < heap->size; ++i){
+            heapAux->array[i] = heap->array[i];
+        }
+        printf("\n");
+    }
+    printOrdem(heapAux);
+    printf("\n");
+
+}
 

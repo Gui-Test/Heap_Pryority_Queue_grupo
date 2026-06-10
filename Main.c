@@ -9,7 +9,7 @@ int main()
     menu(heap);
 }
 
-void menu(Heap *p)
+void menu(Heap *heap)
 {  
    char opc;
    info auxInfo;
@@ -25,7 +25,7 @@ void menu(Heap *p)
 	switch (opc)
 	{ 
       case '1':
-               if(buscaNaFrente(&auxInfo,p)==FRACASSO) puts("fila vazia!");
+               if(buscaNaFrente(&auxInfo,heap)==FRACASSO) puts("fila vazia!");
                else
                 printf("\n consultado : %i \n", auxInfo.matricula);
 		         break;
@@ -39,27 +39,28 @@ void menu(Heap *p)
             scanf("%i", &auxInfo.nome);
             printf("\nEntre com o curso do aluno:\n");
             scanf("%i", &auxInfo.curso);
-            if(insereHeap(p, auxInfo)==FRACASSO)
+            if(insereHeap(heap, auxInfo)==FRACASSO)
              { 
                puts("erro na insercao: estrutura de dados cheia !");
              }
             break;
      case '3':
 
-            if(remove_(&auxInfo,p)==FRACASSO) 
+            if(heap->size == 0) 
                puts("fila vazia!");
             else
+               auxInfo.matricula = removeItem(heap);
                printf("\n item retirado : %i \n", auxInfo.matricula);
             break;
      case '4':
 
-            if(buscaNaCauda(&auxInfo,p)==FRACASSO)
+            if(buscaNaCauda(&auxInfo,heap)==FRACASSO)
                printf("fila vazia!");
             else
                printf("\n consultado : %i \n", auxInfo.matricula);
 		      break;
      case '5' :
-            reinicia(p);
+            reiniciaHeap(heap);
             puts("limpou a fila !!!");
             break;
 
