@@ -38,3 +38,4 @@ int removeItem(Heap *heap);
 int buscaNaCauda(Heap *heap, info *auxInfo);
 int buscaNaFrente(Heap *heap, info *auxInfo);
 void reiniciaHeap(Heap *heap);
+void insereHeapCSV(Heap *heap);

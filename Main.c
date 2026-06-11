@@ -23,6 +23,8 @@ void menu(Heap *heap)
       puts("4 - Busca na cauda");
       puts("5 - Reinicia");
       puts("6 - Enfileira");
+      puts("7 - Mostra Árvore");
+      
       puts("\"zero\" para encerrar");
       printf("\n");
       printf("Digite a opção: ");
@@ -89,6 +91,12 @@ void menu(Heap *heap)
                puts("Fila enfileirada (Ordem Crescente)");
                printf("\n");
                heapSort(heap);
+               printf("\n");
+               break;
+         case '7' :
+               puts("Árvore \n");
+               printf("\n");
+               printHeap(heap);
                printf("\n");
                break;
          default: 

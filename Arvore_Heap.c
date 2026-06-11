@@ -199,3 +199,70 @@ int buscaNaFrente(Heap *heap, info *auxInfo){
     return r;
 }
 
+void insereHeapCSV(Heap *heap){
+    FILE *f = fopen("dataset_v1_teste.csv", "r");
+    info infoAux;
+    if(!f){
+        printf("Arquivo não encontrado.\n");
+        return;
+    }
+    char ch = ' ';
+    int num = 0;
+    while(!feof(f)){
+        /*while(!feof(f)){
+            ch = fgetc(f);
+            if(ch == '\n'){
+                
+            }
+        }*/
+
+        /*ch = fgetc(f);
+        if(ch == '\n' || ch == ","){
+            ch = fgetc(f);
+        }
+        num = ch - '0';
+        (*mat)[i][j] = num;
+        */
+        char linha[1024];
+        
+        // 2. Ler o arquivo linha por linha
+        while (fgets(linha, 1024, f)) {
+            printf("Linha lida: %s", linha);
+
+            // 3. Dividir a linha usando a vírgula (',') como delimitador
+            char *campo = strtok(linha, ",");
+            for(int i = 0; i < 4; i++){
+                switch (i)
+                {
+                case 0:
+                    strcpy(infoAux.nome, campo);
+                    
+                    break;
+                case 1:
+                    
+                    infoAux.matricula = atoi(campo);
+                    break;
+                case 2:
+                    infoAux.ranking = atoi(campo);
+                    
+                    break;
+                case 3:
+                    strcpy(infoAux.curso, campo);
+                    break;    
+                
+                default:
+                    break;
+                }
+                
+                campo = strtok(NULL, ",");
+            }
+            insereHeap(heap, infoAux);
+            /*while (campo != NULL) {
+                printf("  -> Campo: %s\n", campo);
+                campo = strtok(NULL, ","); // Pega o próximo campo
+            }*/
+        }
+        
+    }
+    fclose(f);
+}
