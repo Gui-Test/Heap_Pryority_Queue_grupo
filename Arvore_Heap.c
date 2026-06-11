@@ -39,16 +39,7 @@ void heapfica(Heap *heap, int i)
     }
 }
 
-void heapSort(Heap *heap){
-    Heap heapAux = *heap;
-    Heap *h;
-    info aux;
 
-    aux.matricula = removeItem(h);
-    printf("%i ",aux.matricula);
-    heapSort(h);
-
-}
 
 // Função que heapfica um array já existente
 void buildHeap(Heap *heap)
@@ -174,5 +165,37 @@ void heapSort(Heap *heap){
     printOrdem(heapAux);
     printf("\n");
 
+}
+
+int buscaNaCauda(Heap *heap, info *auxInfo)
+{   
+    int r = FRACASSO;
+    int min = heap->array[heap->size - 1].matricula;
+    int posMin = 1;
+    if(heap->size != 0) {   
+
+        for (int i = heap->size - 2; i > 0; --i){
+            if(min > heap->array[i].matricula) posMin = i;           
+        }
+        auxInfo->matricula = heap->array[posMin].matricula;
+        strcpy(auxInfo->curso, heap->array[posMin].curso);
+        strcpy(auxInfo->nome, heap->array[posMin].nome);
+        auxInfo->ranking = heap->array[posMin].ranking;
+        r = SUCESSO;
+    }
+    return r;
+    
+}
+
+int buscaNaFrente(Heap *heap, info *auxInfo){
+    int r = FRACASSO;
+    if(heap->size != 0){
+        auxInfo->matricula = heap->array[0].matricula;
+        strcpy(auxInfo->curso, heap->array[0].curso);
+        strcpy(auxInfo->nome, heap->array[0].nome);
+        auxInfo->ranking = heap->array[0].ranking;
+        r = SUCESSO;
+    }
+    return r;
 }
 
