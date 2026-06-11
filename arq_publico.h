@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #define SIM 1
 #define NAO 0
 #define SUCESSO 1
@@ -38,4 +39,6 @@ int removeItem(Heap *heap);
 int buscaNaCauda(Heap *heap, info *auxInfo);
 int buscaNaFrente(Heap *heap, info *auxInfo);
 void reiniciaHeap(Heap *heap);
-void insereHeapCSV(Heap *heap);
+
+//Funções relacionadas ao CSV
+void insereHeapCSV(Heap *heap, int nlinha);
