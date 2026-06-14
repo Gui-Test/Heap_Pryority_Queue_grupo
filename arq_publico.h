@@ -24,6 +24,11 @@ typedef struct Heap
     int capacity;
 } Heap;
 
+typedef struct DadosCSV{ 
+    int iterações;
+    int numDados;
+}DadosCSV;
+
 //Funções do Heap
 Heap *criaHeap(int capacity);
 void menu(Heap *heap);
@@ -41,4 +46,6 @@ int buscaNaFrente(Heap *heap, info *auxInfo);
 void reiniciaHeap(Heap *heap);
 
 //Funções relacionadas ao CSV
-void insereHeapCSV(Heap *heap, int nlinha);
+int insereHeapCSV(Heap *heap, int nlinha);
+void insereNoCSV(DadosCSV dados[],int tam);
+void experimento(DadosCSV dados[]);

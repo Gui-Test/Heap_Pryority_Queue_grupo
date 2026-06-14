@@ -13,6 +13,7 @@ void menu(Heap *heap)
 {  
    char opc;
    info auxInfo;
+   DadosCSV dados[18];
 
    do{ 
       fflush(stdin);
@@ -24,6 +25,7 @@ void menu(Heap *heap)
       puts("5 - Reinicia");
       puts("6 - Enfileira");
       puts("7 - Mostra Árvore");
+      puts("8 - Experimento");
       
       puts("\"zero\" para encerrar");
       printf("\n");
@@ -57,7 +59,7 @@ void menu(Heap *heap)
                scanf("%s", auxInfo.nome);
                printf("\nEntre com o curso do aluno:\n");
                scanf("%s", auxInfo.curso);
-               if(insereHeap(heap, auxInfo)==FRACASSO)
+               if (heap->size == heap->capacity)
                { 
                   puts("erro na insercao: estrutura de dados cheia !");
                }else puts("Inserido com sucesso");
@@ -97,6 +99,13 @@ void menu(Heap *heap)
                puts("Árvore \n");
                printf("\n");
                printHeap(heap);
+               printf("\n");
+               break;
+         case '8' :
+               puts("Árvore \n");
+               printf("\n");
+               experimento(dados);
+               insereNoCSV(dados,18);
                printf("\n");
                break;
          default: 

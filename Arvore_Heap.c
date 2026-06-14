@@ -69,11 +69,7 @@ void aumentaChave(Heap *heap, int index, int newValue)
 // Função que insere um valor novo no heap
 int insereHeap(Heap *heap, info value)
 {
-    if (heap->size == heap->capacity)
-    {
-        printf("Heap overflow\n");
-        return FRACASSO;
-    }
+    int numIt = 0;
 
     heap->size++;
     int i = heap->size - 1;
@@ -84,8 +80,9 @@ int insereHeap(Heap *heap, info value)
     {
      troca(&heap->array[i], &heap->array[(i - 1) / 2]);
         i = (i - 1) / 2;
+        numIt++;
     }
-    return SUCESSO;
+    return numIt;
 }
 
 // Função que deleta uma chave
