@@ -25,7 +25,7 @@ typedef struct Heap
 } Heap;
 
 typedef struct DadosCSV{ 
-    int iterações;
+    float iterações;
     int numDados;
 }DadosCSV;
 

@@ -59,6 +59,7 @@ void menu(Heap *heap)
                scanf("%s", auxInfo.nome);
                printf("\nEntre com o curso do aluno:\n");
                scanf("%s", auxInfo.curso);
+               insereHeap(heap, auxInfo);
                if (heap->size == heap->capacity)
                { 
                   puts("erro na insercao: estrutura de dados cheia !");

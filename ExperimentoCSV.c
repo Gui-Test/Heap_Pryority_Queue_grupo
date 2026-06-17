@@ -15,7 +15,7 @@ int insereHeapCSV(Heap *heap, int nlinha){
         fgets(linha, 1024, f);    
     }
     if(!feof(f)){
-        printf("Linha %i lida: %s", nlinha, linha);
+        //printf("Linha %i lida: %s", nlinha, linha);
         // 3. Dividir a linha usando a vírgula (',') como delimitador
         char *campo = strtok(linha, ",");
         for(int i = 0; i < 4; i++){
@@ -69,26 +69,34 @@ int conta_linha(){
 }
 
 void experimento(DadosCSV dados[]){
-    int numIt = 0;
+    float numIt = 0;
     int tamanho = 9000;
     int iDados = 0;
-    int mult500 = 500;
+    float mult500 = 500;
     Heap *base = criaHeap(tamanho);
     
     int max_linha = conta_linha();
     srand(time(0));
     for(int i = 0; i < tamanho; i++){
         int rando = rand() % max_linha + 1;
-        printf("\n %i - ", i + 1);
         numIt = numIt + insereHeapCSV(base, rando);
         
         if(i == mult500 - 1){
-            dados[iDados].iterações = numIt;
+            dados[iDados].iterações = numIt / mult500;
             dados[iDados].numDados = i + 1;
             mult500 = mult500 + 500;
             iDados++;
         }      
     }
+    //Função para mostrar os dados do experimento
+    /*for(int i = 0; i < 18;i++){
+        printf("%i ",i);
+        float it = dados[i].iterações;
+        int numDados = dados[i].numDados;
+
+        printf("%f,%i\n ", it,numDados);
+        
+    }*/
     
 }
 
@@ -101,15 +109,15 @@ void insereNoCSV(DadosCSV dados[],int tam){
         return;
     }
     int i = 0;
-    int it;
+    float it;
     int numDados;
     fprintf(f,"Iterações,NumeroInserido\n");
     for(int i = 0; i < tam;i++){
-        printf("%i",i);
+        //printf("%i ",i);
         it = dados[i].iterações;
         numDados = dados[i].numDados;
 
-        fprintf(f,"%i,%i\n", it,numDados);
+        fprintf(f,"%f,%i\n", it,numDados);
         
     }
     fclose(f);
